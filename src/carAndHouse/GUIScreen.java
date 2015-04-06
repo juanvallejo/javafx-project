@@ -22,16 +22,23 @@ public class GUIScreen extends Application {
 	public void start(Stage primaryStage) {
 		// Buttons do not expand past their natural size
 		FlowPane pane = new FlowPane(Orientation.VERTICAL);
-		pane.setColumnHalignment(HPos.CENTER);
+		pane.setColumnHalignment(HPos.LEFT);
 		Button carButton=new Button("Car");
 		Button houseButton=new Button ("House");
+		Button deleteCarButton=new Button("Delete Car");
+		Button deleteHouseButton=new Button ("Delete House");
+		Button helpButton=new Button("Help");
 		//pane.setLeft(carButton);
 		//pane.setRight(houseButton);//works for borderPane
 		List <Car> cars=new ArrayList<Car>();
 		List<House> houses = new ArrayList<House>();
-		pane.getChildren().addAll(carButton, houseButton);
+		pane.getChildren().addAll(carButton, houseButton, deleteCarButton, deleteHouseButton,
+				helpButton);
 		carButton.setOnAction(event -> cars.add(new Car()));
 		houseButton.setOnAction(event -> houses.add(new House()));
+		deleteCarButton.setOnAction(event ->{if(cars.size()>0){cars.remove(0);}});
+		deleteHouseButton.setOnAction(event->{if(houses.size()>0){houses.remove(0);}});
+		//helpButton pops a dialog.
 		Group root = new Group(pane);
 		Scene scene = new Scene(root, 800, 600);
 				
