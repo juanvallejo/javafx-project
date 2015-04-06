@@ -23,6 +23,7 @@ public class GUIScreen extends Application {
 		// Buttons do not expand past their natural size
 		FlowPane pane = new FlowPane(Orientation.VERTICAL);
 		pane.setColumnHalignment(HPos.LEFT);
+		Label message = new Label("0 cars and 0 houses");
 		Button carButton=new Button("Car");
 		Button houseButton=new Button ("House");
 		Button deleteCarButton=new Button("Delete Car");
@@ -33,9 +34,11 @@ public class GUIScreen extends Application {
 		List <Car> cars=new ArrayList<Car>();
 		List<House> houses = new ArrayList<House>();
 		pane.getChildren().addAll(carButton, houseButton, deleteCarButton, deleteHouseButton,
-				helpButton);
-		carButton.setOnAction(event -> cars.add(new Car()));
-		houseButton.setOnAction(event -> houses.add(new House()));
+				helpButton, message);
+		carButton.setOnAction(event -> {cars.add(new Car());message.setText(cars.size() + 
+				" cars and "+houses.size()+" houses.");});
+		houseButton.setOnAction(event -> {houses.add(new House());message.setText(cars.size()+
+				" cars and "+houses.size()+" houses.");});
 		deleteCarButton.setOnAction(event ->{if(cars.size()>0){cars.remove(0);}});
 		deleteHouseButton.setOnAction(event->{if(houses.size()>0){houses.remove(0);}});
 		//helpButton pops a dialog.
