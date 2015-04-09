@@ -16,5 +16,10 @@ public class Car {
 		circle.setRadius(10);
 		
 	}
-
+	public Circle getShape(){
+		Circle	circle = new Circle();
+		circle.setFill(Color.BLUE);
+		circle.setRadius(10);
+		return circle;
+	}
 }

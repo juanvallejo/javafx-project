@@ -36,15 +36,15 @@ public class GUIScreen extends Application {
 		pane.getChildren().addAll(carButton, houseButton, deleteCarButton, deleteHouseButton,
 				helpButton, message);
 		carButton.setOnAction(event -> {cars.add(new Car());message.setText(cars.size() + 
-				" cars and "+houses.size()+" houses.");});
+				" cars and "+houses.size()+" houses.");pane.getChildren().add(new Car().getShape());});
 		houseButton.setOnAction(event -> {houses.add(new House());message.setText(cars.size()+
 				" cars and "+houses.size()+" houses.");});
-		deleteCarButton.setOnAction(event ->{if(cars.size()>0){cars.remove(0);}});
+		deleteCarButton.setOnAction(event ->{if(cars.size()>0){cars.remove(0);
+				pane.getChildren().remove(pane.getChildren().size()-1);}});
 		deleteHouseButton.setOnAction(event->{if(houses.size()>0){houses.remove(0);}});
-		//helpButton pops a dialog.
+		//helpButton needs to pop a dialog.
 		Group root = new Group(pane);
 		Scene scene = new Scene(root, 800, 600);
-				
 		primaryStage.setScene(scene);
 		primaryStage.setTitle("Car and House");
 		primaryStage.show();
