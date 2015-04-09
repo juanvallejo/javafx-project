@@ -13,6 +13,7 @@ public class CircleMouse extends Application {
 	@Override
 	public void start(Stage primaryStage) {
 
+		Circle[] circles = new Circle[100];
 		Circle circle = new Circle();
 		circle.setFill(Color.BLUE);
 
@@ -30,9 +31,10 @@ public class CircleMouse extends Application {
 		circle.centerXProperty().set(scene.heightProperty().get()/2);
 		circle.centerYProperty().set(scene.widthProperty().get()/2);
 		
-		scene.setOnMouseDragged((me) -> {
-			circle.centerXProperty().set(me.getX());
-			circle.centerYProperty().set(me.getY());
+		scene.setOnMouseDragged((mouse) -> {
+			// circle.centerXProperty().set(mouse.getX());
+			// circle.centerYProperty().set(mouse.getY());
+			root.getChildren().add(circle);
 		});
 
 		primaryStage.setScene(scene);
