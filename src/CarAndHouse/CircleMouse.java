@@ -1,4 +1,4 @@
-package CarAndHouse;
+package carAndHouse;
 
 import javafx.application.Application;
 import javafx.beans.binding.Bindings;

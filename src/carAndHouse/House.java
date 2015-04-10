@@ -1,4 +1,4 @@
-package CarAndHouse;
+package carAndHouse;
 
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;;
