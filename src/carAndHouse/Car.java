@@ -14,14 +14,6 @@ public class Car implements ScreenObject{
 		masterIndex = 0;
 	}
 
-	public void setIndex(int index) {
-		masterIndex = index;
-	}
-
-	public int getIndex() {
-		return masterIndex;
-	}
-
 	public Circle getShape(){
 		Circle	circle = new Circle();
 		circle.setFill(Color.BLUE);

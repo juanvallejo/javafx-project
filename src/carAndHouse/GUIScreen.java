@@ -76,7 +76,7 @@ public class GUIScreen extends Application {
 			//masterIndex++;
 
 			Car car = new Car();
-			car.setIndex(masterIndex);
+			//car.setIndex(masterIndex);
 			cars.add(car);
 			index.add(car);
 
@@ -90,7 +90,7 @@ public class GUIScreen extends Application {
 			//masterIndex++;
 
 			House house = new House();
-			house.setIndex(masterIndex);
+			//house.setIndex(masterIndex);
 			houses.add(house);
 			index.add(house);
 

@@ -17,13 +17,7 @@ public class House implements ScreenObject {
 	/**
 	 * Sets the index of the object on the thingy
 	 */
-	public void setIndex(int index) {
-		masterIndex = index;
-	}
 
-	public int getIndex() {
-		return masterIndex;
-	}
 	public Rectangle getShape(){
 		Rectangle	rect = new Rectangle();
 		rect.setFill(Color.RED);
