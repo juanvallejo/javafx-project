@@ -19,10 +19,20 @@ import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
 public class GUIScreen extends Application {
+
+	List<Car> cars;
+	List<House> houses;
+
 	public void start(Stage primaryStage) {
+
+		// initialize list of cars and houses
+		cars 	= new ArrayList<Car>();
+		houses 	= new ArrayList<House>();
+
 		// Buttons do not expand past their natural size
 		FlowPane pane = new FlowPane(Orientation.VERTICAL);
 		pane.setColumnHalignment(HPos.LEFT);
+
 		Label message = new Label("0 cars and 0 houses");
 		Button carButton=new Button("Car");
 		Button houseButton=new Button ("House");
@@ -31,8 +41,7 @@ public class GUIScreen extends Application {
 		Button helpButton=new Button("Help");
 		//pane.setLeft(carButton);
 		//pane.setRight(houseButton);//works for borderPane
-		List <Car> cars=new ArrayList<Car>();
-		List<House> houses = new ArrayList<House>();
+
 		pane.getChildren().addAll(carButton, houseButton, deleteCarButton, deleteHouseButton,
 				helpButton, message);
 		carButton.setOnAction(event -> {cars.add(new Car());message.setText(cars.size() + 
