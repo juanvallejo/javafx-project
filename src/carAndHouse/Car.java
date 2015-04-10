@@ -6,7 +6,7 @@ import javafx.scene.shape.Circle;
 /**
  * A Car
  */
-public class Car {
+public class Car implements ScreenObject{
 
 	private int masterIndex;
 
@@ -27,5 +27,8 @@ public class Car {
 		circle.setFill(Color.BLUE);
 		circle.setRadius(10);
 		return circle;
+	}
+	public String getType(){
+		return "Car";
 	}
 }

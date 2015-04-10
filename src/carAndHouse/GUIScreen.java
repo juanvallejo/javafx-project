@@ -24,12 +24,33 @@ public class GUIScreen extends Application {
 
 	List<Car> cars;
 	List<House> houses;
+	List<ScreenObject> index;
 
+	public int getCar(){
+		for(int i=0; i<index.size(); i++){
+			index.get(i);
+			if(index.get(i).getType().equals("Car")){
+				return i;
+			}
+		}
+		return -1;
+	}
+	public int getHouse(){
+		for(int i=0; i<index.size(); i++){
+			index.get(i);
+			if(index.get(i).getType().equals("House")){
+				return i;
+			}
+		}
+		return -1;
+	}
+	
 	public void start(Stage primaryStage) {
 
 		// initialize list of cars and houses
 		cars 	= new ArrayList<Car>();
 		houses 	= new ArrayList<House>();
+		index 	= new ArrayList<ScreenObject>();
 
 		// Buttons do not expand past their natural size
 		FlowPane pane = new FlowPane(Orientation.VERTICAL);
@@ -52,11 +73,12 @@ public class GUIScreen extends Application {
 		// add new cars to the thingy
 		carButton.setOnAction(event -> {
 
-			masterIndex++;
+			//masterIndex++;
 
 			Car car = new Car();
 			car.setIndex(masterIndex);
 			cars.add(car);
+			index.add(car);
 
 			pane.getChildren().add(car.getShape());
 
@@ -65,11 +87,12 @@ public class GUIScreen extends Application {
 		// add new houses to the thingy
 		houseButton.setOnAction(event -> {
 
-			masterIndex++;
+			//masterIndex++;
 
 			House house = new House();
 			house.setIndex(masterIndex);
 			houses.add(house);
+			index.add(house);
 
 			pane.getChildren().add(house.getShape());
 
@@ -78,17 +101,19 @@ public class GUIScreen extends Application {
 		//currently delete either type of object indiscriminately. need to fix.
 		deleteCarButton.setOnAction(event ->{
 			if(cars.size() > 0) {
-				pane.getChildren().remove(cars.get(0).getIndex());
+				pane.getChildren().remove(masterIndex+getCar());
 				cars.remove(0);
-				masterIndex--;
+				index.remove(getCar());
+				//masterIndex--;
 			}
 		});
 
 		deleteHouseButton.setOnAction(event->{
 			if(houses.size() > 0){
-				pane.getChildren().remove(houses.get(0).getIndex());
+				pane.getChildren().remove(masterIndex+getHouse());
 				houses.remove(0);
-				masterIndex--;
+				index.remove(getHouse());
+				//masterIndex--;
 			}
 		});
 		//helpButton needs to pop a dialog.
