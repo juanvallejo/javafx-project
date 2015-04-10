@@ -20,6 +20,8 @@ import javafx.stage.Stage;
 
 public class GUIScreen extends Application {
 
+	public int masterIndex = 0;
+
 	List<Car> cars;
 	List<House> houses;
 
@@ -43,16 +45,52 @@ public class GUIScreen extends Application {
 		//pane.setRight(houseButton);//works for borderPane
 
 		pane.getChildren().addAll(carButton, houseButton, deleteCarButton, deleteHouseButton,
-				helpButton, message);
-		carButton.setOnAction(event -> {cars.add(new Car());message.setText(cars.size() + 
-				" cars and "+houses.size()+" houses.");pane.getChildren().add(new Car().getShape());});
-		houseButton.setOnAction(event -> {houses.add(new House());message.setText(cars.size()+
-				" cars and "+houses.size()+" houses.");pane.getChildren().add(new House().getShape());});
+				helpButton);
+
+		masterIndex = pane.getChildren().size();
+
+		// add new cars to the thingy
+		carButton.setOnAction(event -> {
+
+			masterIndex++;
+
+			Car car = new Car();
+			car.setIndex(masterIndex);
+			cars.add(car);
+
+			pane.getChildren().add(car.getShape());
+
+		});
+
+		// add new houses to the thingy
+		houseButton.setOnAction(event -> {
+
+			masterIndex++;
+
+			House house = new House();
+			house.setIndex(masterIndex);
+			houses.add(house);
+
+			pane.getChildren().add(house.getShape());
+
+		});
+
 		//currently delete either type of object indiscriminately. need to fix.
-		deleteCarButton.setOnAction(event ->{if(cars.size()>0){cars.remove(0);
-				pane.getChildren().remove(pane.getChildren().size()-1);}});
-		deleteHouseButton.setOnAction(event->{if(houses.size()>0){houses.remove(0);
-				pane.getChildren().remove(pane.getChildren().size()-1);}});
+		deleteCarButton.setOnAction(event ->{
+			if(cars.size() > 0) {
+				pane.getChildren().remove(cars.get(0).getIndex());
+				cars.remove(0);
+				masterIndex--;
+			}
+		});
+
+		deleteHouseButton.setOnAction(event->{
+			if(houses.size() > 0){
+				pane.getChildren().remove(houses.get(0).getIndex());
+				houses.remove(0);
+				masterIndex--;
+			}
+		});
 		//helpButton needs to pop a dialog.
 		Group root = new Group(pane);
 		Scene scene = new Scene(root, 800, 600);

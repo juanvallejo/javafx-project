@@ -6,16 +6,22 @@ import javafx.scene.shape.Circle;
 /**
  * A Car
  */
-
 public class Car {
 
-	public Car() {
+	private int masterIndex;
 
-		Circle	circle = new Circle();
-		circle.setFill(Color.BLUE);
-		circle.setRadius(10);
-		
+	public Car() {
+		masterIndex = 0;
 	}
+
+	public void setIndex(int index) {
+		masterIndex = index;
+	}
+
+	public int getIndex() {
+		return masterIndex;
+	}
+
 	public Circle getShape(){
 		Circle	circle = new Circle();
 		circle.setFill(Color.BLUE);
