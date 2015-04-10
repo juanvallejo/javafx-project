@@ -1,4 +1,4 @@
-package carAndHouse;
+package CarAndHouse;
 
 import java.util.ArrayList;
 import java.util.List;

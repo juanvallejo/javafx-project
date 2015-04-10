@@ -13,7 +13,6 @@ public class CircleMouse extends Application {
 	@Override
 	public void start(Stage primaryStage) {
 
-		Circle[] circles = new Circle[100];
 		Circle circle = new Circle();
 		circle.setFill(Color.BLUE);
 
