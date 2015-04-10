@@ -54,6 +54,7 @@ public class GUIScreen extends Application {
 		//helpButton needs to pop a dialog.
 		Group root = new Group(pane);
 		Scene scene = new Scene(root, 800, 600);
+		
 		primaryStage.setScene(scene);
 		primaryStage.setTitle("Car and House");
 		primaryStage.show();
