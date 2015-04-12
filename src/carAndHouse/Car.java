@@ -2,11 +2,12 @@ package carAndHouse;
 
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
+import javafx.scene.shape.Shape;
 
 /**
  * A Car
  */
-public class Car implements ScreenObject{
+public class Car {
 
 	private int masterIndex;
 
@@ -14,7 +15,7 @@ public class Car implements ScreenObject{
 		masterIndex = 0;
 	}
 
-	public Circle getShape(){
+	public Shape getShape(){
 		Circle	circle = new Circle();
 		circle.setFill(Color.BLUE);
 		circle.setRadius(10);

@@ -1,10 +1,10 @@
 package carAndHouse;
 
-import javafx.scene.shape.Shape;
+import javafx.scene.Group;
 
 public interface ScreenObject {
 	
-	public Shape getShape();
+	public Group getShape();
 	public String getType();
 
 }

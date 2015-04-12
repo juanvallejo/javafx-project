@@ -1,4 +1,4 @@
-package ThreeDimension;
+package carAndHouse;
 
 import java.util.Random;
 
@@ -10,7 +10,7 @@ import javafx.scene.paint.PhongMaterial;
 import javafx.scene.shape.*;
 
 
-public class car3D extends Shape3D{
+public class car3D extends Shape3D implements ScreenObject{
 	
 	PhongMaterial wheelMaterial = new PhongMaterial();
 	PhongMaterial bodyMaterial = new PhongMaterial();
@@ -72,9 +72,12 @@ public class car3D extends Shape3D{
 		 car=new Group(body,wheel1,wheel2,wheel3,wheel4);
 	}
 	
-	public Group getCar()
+	public Group getShape()
 	{
 		return car;
+	}
+	public String getType(){
+		return "Car";
 	}
 
 	@Override
