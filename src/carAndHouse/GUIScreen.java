@@ -59,6 +59,7 @@ public class GUIScreen extends Application {
 		// Buttons do not expand past their natural size
 		FlowPane pane = new FlowPane(Orientation.VERTICAL);
 		pane.setColumnHalignment(HPos.LEFT);
+		pane.setMinSize(SCREENWIDTH, SCREENHEIGHT);
 		Camera camera = new PerspectiveCamera();
 		Group cameraGroup = new Group();
 		// getChildren() is a List
@@ -139,9 +140,9 @@ public class GUIScreen extends Application {
 		});
 		//helpButton needs to pop a dialog.
 
-		Stage secondaryStage=new Stage();
-		secondaryStage.setScene(scene2);
-		secondaryStage.show();
+		//Stage secondaryStage=new Stage();
+		//secondaryStage.setScene(scene2);
+		//secondaryStage.show();
 		primaryStage.setScene(scene);
 		primaryStage.setTitle("Car and House");
 		primaryStage.show();
