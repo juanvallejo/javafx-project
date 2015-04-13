@@ -173,12 +173,15 @@ public class GUIScreen extends Application {
 			dialog.initOwner(stage);
 
 			VBox dialogVbox = new VBox(20);
-			dialogVbox.getChildren().add(new Text("Help\nYou can add new cars with the 'Car'"
-				+ " button, and add\n new houses with the 'House' button. The oldest house\n"
-				+ " or car will be deleted when you select 'Delete House'\n or 'Delete Car'"
-				+ " respectively. Click and drag the screen\n to rotate the camera. Camera"
-				+ " will move opposite\n the direction of your mouse (ie up mouse = down \n"
-				+ " camera.)"
+			dialogVbox.getChildren().add(
+
+				new Text("Help\nYou can add new cars with the 'Car'"
+            	+ " button, and add\n new houses with the 'House' button. The oldest house\n"
+            	+ " or car will be deleted when you select 'Delete House'\n or 'Delete Car'"
+            	+ " respectively. Click and drag the screen\n to rotate the camera. Camera"
+            	+ " will move opposite\n the direction of your mouse (ie up mouse = further\n"
+            	+ " away, down mouse = closer, right mouse = left, etc.)"
+            	
 			));
 
 			Scene dialogScene = new Scene(dialogVbox, 300, 200);
@@ -197,7 +200,7 @@ public class GUIScreen extends Application {
 		Scene scene = new Scene(mainSceneLayout, 800, 600);
 
 		stage.setScene(scene);
-		stage.setTitle("My Title");
+		stage.setTitle("Car And House");
 		stage.show();
 
 	}
