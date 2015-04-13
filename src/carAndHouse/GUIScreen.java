@@ -13,6 +13,7 @@ import javafx.scene.PerspectiveCamera;
 import javafx.scene.Scene;
 import javafx.scene.SubScene;
 import javafx.scene.control.Button;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
@@ -57,7 +58,7 @@ public class GUIScreen extends Application {
 		// Buttons do not expand past their natural size
 		FlowPane pane = new FlowPane(Orientation.VERTICAL);
 		FlowPane sub  = new FlowPane(Orientation.VERTICAL);
-		pane.setColumnHalignment(HPos.LEFT);
+		//pane.setColumnHalignment(HPos.LEFT);
 		pane.setMinSize(SCREENWIDTH, SCREENHEIGHT);
 		Camera camera = new PerspectiveCamera();
 		Group cameraGroup = new Group();
@@ -77,7 +78,7 @@ public class GUIScreen extends Application {
 		//pane.setLeft(carButton);
 		//pane.setRight(houseButton);//works for borderPane
 		
-		pane.getChildren().addAll(carButton, houseButton, deleteCarButton, deleteHouseButton,
+		sub.getChildren().addAll(carButton, houseButton, deleteCarButton, deleteHouseButton,
 				helpButton);
 
 		masterIndex = pane.getChildren().size();
@@ -146,18 +147,18 @@ public class GUIScreen extends Application {
 		});
 		Group root = new Group(pane);
 		Scene scene = new Scene(root, SCREENWIDTH, SCREENHEIGHT);
-		SubScene scene2 = new SubScene(sub, SCREENWIDTH,SCREENHEIGHT);
-		sub.setMouseTransparent(true);
-		scene2.setCamera(camera);
-		scene2.setOnMouseDragged(me -> {
+		Scene scene2 = new Scene(sub, 200,300);
+		root.setMouseTransparent(true);
+		scene.setCamera(camera);
+		scene.setOnMouseDragged(me -> {
 			cameraGroup.translateZProperty().set(-1000 - (me.getY()*10) );
 			cameraGroup.rotateProperty().set((SCREENWIDTH/8 - (me.getX())/20));
 		});
 		//helpButton needs to pop a dialog.
 
-		//Stage secondaryStage=new Stage();
-		//secondaryStage.setScene(scene2);
-		//secondaryStage.show();
+		Stage secondaryStage=new Stage();
+		secondaryStage.setScene(scene2);
+		secondaryStage.show();
 		primaryStage.setScene(scene);
 		primaryStage.setTitle("Car and House");
 		primaryStage.show();
