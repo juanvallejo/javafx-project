@@ -71,8 +71,8 @@ public class GUIScreen extends Application {
 
 		// define camera initial rotation state.
 		cameraGroup.getChildren().add(camera);
-		cameraGroup.rotationAxisProperty().set(new Point3D(0, 0, 0));
-
+		
+		
 
 		StackPane mainSceneLayout = new StackPane();
 		mainSceneLayout.setPrefSize(800, 600);
@@ -101,14 +101,25 @@ public class GUIScreen extends Application {
 		buttonScene.setOnMouseDragged(me -> {
 
 			dragHappened = true;
-			
+			cameraGroup.rotationAxisProperty().set(new Point3D(0, 1, 0));
 			cameraGroup.translateZProperty().set(-1000 - ((me.getY()-mouseInitialY)*10) );
 			cameraGroup.rotateProperty().set((SCREENWIDTH/8 - ((me.getX()-mouseInitialX)/20)));
-
+			
 			//cameraGroup.translateZProperty().set((cameraGroup.getTranslateZ() - ((me.getY() - mouseInitialY) * 0.25)));
 			//cameraGroup.rotateProperty().set(cameraGroup.rotateProperty().get() + ((me.getX() - mouseInitialX) * 20));
 
 		});
+		
+		buttonScene.setOnMouseMoved(me -> {
+			
+					dragHappened = true;
+					cameraGroup.rotationAxisProperty().set(new Point3D(0, 0, 0));
+					cameraGroup.translateZProperty().set(-1000 - ((me.getY()-mouseInitialY)*10) );
+					cameraGroup.rotateProperty().set((SCREENWIDTH/8 - ((me.getX()-mouseInitialX)/20)));
+					//cameraGroup.translateZProperty().set((cameraGroup.getTranslateZ() - ((me.getY() - mouseInitialY) * 0.25)));
+					//cameraGroup.rotateProperty().set(cameraGroup.rotateProperty().get() + ((me.getX() - mouseInitialX) * 20));
+
+				});
 
 		buttonScene.setOnMousePressed(me -> {
 			mouseInitialX = me.getX();
