@@ -1,4 +1,4 @@
-package ThreeDimension;
+package  carAndHouse;
 
 
 import java.util.Random;
@@ -11,7 +11,7 @@ import javafx.scene.paint.PhongMaterial;
 import javafx.scene.shape.*;
 
 
-public class house3D extends Shape3D
+public class house3D extends Shape3D implements ScreenObject
 {
 	PhongMaterial roofMaterial = new PhongMaterial();
 	PhongMaterial bodyMaterial = new PhongMaterial();
@@ -75,6 +75,18 @@ public class house3D extends Shape3D
 
 	@Override
 	protected NGNode impl_createPeer() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Shape getShape() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public String getType() {
 		// TODO Auto-generated method stub
 		return null;
 	}

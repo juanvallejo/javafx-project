@@ -25,13 +25,14 @@ public class CarAndHouse extends Application
 	@Override
 	public void start(Stage primaryStage) throws Exception 
 	{
-		car3D car1 = new car3D();
-//<<<<<<< HEAD
+		/*car3D car1 = new car3D();
+
 		Group group1 = car1.getShape();
-		
+		*/
 		house3D house1 = new house3D();
-		Group group2 = house1.getShape();
-//=======
+		Group group2 = house1.getHouse();
+
+ 
 		//Group group1 = car1.getShape();
 //>>>>>>> df08d7896b973c8034839d6260e64a5d57fad132
 
@@ -39,7 +40,7 @@ public class CarAndHouse extends Application
 		Group cameraGroup = new Group();
 		// getChildren() is a List
 		cameraGroup.getChildren().add(camera);
-		group1.getChildren().add(cameraGroup);
+		group2.getChildren().add(cameraGroup);
 		//group2.getChildren().add(cameraGroup);
 		//group3.getChildren().add(cameraGroup);
 		cameraGroup.setTranslateX(-SCREENWIDTH/2);
