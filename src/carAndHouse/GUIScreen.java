@@ -20,6 +20,7 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 public class GUIScreen extends Application {
+
 	public static final int SCREENWIDTH = 800;
 	public static final int SCREENHEIGHT = 600;
 	public int masterIndex = 0;
@@ -148,11 +149,13 @@ public class GUIScreen extends Application {
 		Scene scene = new Scene(root, SCREENWIDTH, SCREENHEIGHT);
 		SubScene scene2 = new SubScene(sub, SCREENWIDTH,SCREENHEIGHT);
 		sub.setMouseTransparent(true);
+
 		scene2.setCamera(camera);
 		scene2.setOnMouseDragged(me -> {
 			cameraGroup.translateZProperty().set(-1000 - (me.getY()*10) );
 			cameraGroup.rotateProperty().set((SCREENWIDTH/8 - (me.getX())/20));
 		});
+
 		//helpButton needs to pop a dialog.
 
 		//Stage secondaryStage=new Stage();
