@@ -82,6 +82,6 @@ public class house3D extends Shape3D implements ScreenObject
 	@Override
 	public String getType() {
 		// TODO Auto-generated method stub
-		return null;
+		return "House";
 	}
 }
