@@ -21,6 +21,7 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 public class GUIScreen extends Application {
+
 	public static final int SCREENWIDTH = 800;
 	public static final int SCREENHEIGHT = 600;
 	public int masterIndex = 0;
@@ -78,7 +79,7 @@ public class GUIScreen extends Application {
 		//pane.setLeft(carButton);
 		//pane.setRight(houseButton);//works for borderPane
 		
-		sub.getChildren().addAll(carButton, houseButton, deleteCarButton, deleteHouseButton,
+		pane.getChildren().addAll(carButton, houseButton, deleteCarButton, deleteHouseButton,
 				helpButton);
 
 		masterIndex = pane.getChildren().size();
@@ -147,18 +148,26 @@ public class GUIScreen extends Application {
 		});
 		Group root = new Group(pane);
 		Scene scene = new Scene(root, SCREENWIDTH, SCREENHEIGHT);
-		Scene scene2 = new Scene(sub, 200,300);
-		root.setMouseTransparent(true);
-		scene.setCamera(camera);
-		scene.setOnMouseDragged(me -> {
+
+		//Scene scene2 = new Scene(sub, 200,300);
+		//root.setMouseTransparent(true);
+		//scene.setCamera(camera);
+
+		SubScene scene2 = new SubScene(sub, SCREENWIDTH,SCREENHEIGHT);
+		sub.setMouseTransparent(true);
+
+		scene2.setCamera(camera);
+		scene2.setOnMouseDragged(me -> {
+
 			cameraGroup.translateZProperty().set(-1000 - (me.getY()*10) );
 			cameraGroup.rotateProperty().set((SCREENWIDTH/8 - (me.getX())/20));
 		});
+
 		//helpButton needs to pop a dialog.
 
-		Stage secondaryStage=new Stage();
-		secondaryStage.setScene(scene2);
-		secondaryStage.show();
+		//Stage secondaryStage=new Stage();
+		//secondaryStage.setScene(scene2);
+		//secondaryStage.show();
 		primaryStage.setScene(scene);
 		primaryStage.setTitle("Car and House");
 		primaryStage.show();
