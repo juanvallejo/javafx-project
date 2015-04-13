@@ -6,7 +6,10 @@ import java.util.List;
 import javafx.application.Application;
 import javafx.geometry.HPos;
 import javafx.geometry.Orientation;
+import javafx.geometry.Point3D;
+import javafx.scene.Camera;
 import javafx.scene.Group;
+import javafx.scene.PerspectiveCamera;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -19,10 +22,11 @@ import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
 public class GUIScreen extends Application {
-
+	public static final int SCREENWIDTH = 800;
+	public static final int SCREENHEIGHT = 600;
 	public int masterIndex = 0;
 
-	List<Car> cars;
+	List<car3D> cars;
 	List<House> houses;
 	List<ScreenObject> index;
 
@@ -48,15 +52,24 @@ public class GUIScreen extends Application {
 	public void start(Stage primaryStage) {
 
 		// initialize list of cars and houses
-		cars 	= new ArrayList<Car>();
+		cars 	= new ArrayList<car3D>();
 		houses 	= new ArrayList<House>();
 		index 	= new ArrayList<ScreenObject>();
 
 		// Buttons do not expand past their natural size
 		FlowPane pane = new FlowPane(Orientation.VERTICAL);
 		pane.setColumnHalignment(HPos.LEFT);
+		pane.setMinSize(SCREENWIDTH, SCREENHEIGHT);
+		Camera camera = new PerspectiveCamera();
+		Group cameraGroup = new Group();
+		// getChildren() is a List
+		cameraGroup.getChildren().add(camera);
+		cameraGroup.setTranslateX(-SCREENWIDTH/2);
+		cameraGroup.setTranslateY(-SCREENHEIGHT);
+		cameraGroup.setTranslateZ(-1000);
+		// For rotating, later
+		cameraGroup.rotationAxisProperty().set(new Point3D(0, 0, 0));
 
-		Label message = new Label("0 cars and 0 houses");
 		Button carButton=new Button("Car");
 		Button houseButton=new Button ("House");
 		Button deleteCarButton=new Button("Delete Car");
@@ -75,7 +88,7 @@ public class GUIScreen extends Application {
 
 			//masterIndex++;
 
-			Car car = new Car();
+			car3D car = new car3D();
 			//car.setIndex(masterIndex);
 			cars.add(car);
 			index.add(car);
@@ -116,10 +129,20 @@ public class GUIScreen extends Application {
 				//masterIndex--;
 			}
 		});
-		//helpButton needs to pop a dialog.
 		Group root = new Group(pane);
-		Scene scene = new Scene(root, 800, 600);
-		
+		Scene scene = new Scene(root, SCREENWIDTH, SCREENHEIGHT);
+		Scene scene2 = new Scene(cameraGroup, SCREENWIDTH,SCREENHEIGHT);
+		cameraGroup.setMouseTransparent(true);
+		scene2.setCamera(camera);
+		scene2.setOnMouseDragged(me -> {
+			cameraGroup.translateZProperty().set(-1000 - (me.getY()*10) );
+			cameraGroup.rotateProperty().set((SCREENWIDTH/8 - (me.getX())/20));
+		});
+		//helpButton needs to pop a dialog.
+
+		//Stage secondaryStage=new Stage();
+		//secondaryStage.setScene(scene2);
+		//secondaryStage.show();
 		primaryStage.setScene(scene);
 		primaryStage.setTitle("Car and House");
 		primaryStage.show();
