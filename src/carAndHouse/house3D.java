@@ -68,19 +68,13 @@ public class house3D extends Shape3D implements ScreenObject
 		 house=new Group(body,roof);
 	}
 	
-	public Group getHouse()
+	public Group getShape()
 	{
 		return house;
 	}
 
 	@Override
 	protected NGNode impl_createPeer() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public Shape getShape() {
 		// TODO Auto-generated method stub
 		return null;
 	}
