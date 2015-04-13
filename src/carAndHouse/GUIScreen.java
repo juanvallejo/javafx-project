@@ -196,12 +196,14 @@ public class GUIScreen extends Application {
 			VBox dialogVbox = new VBox(20);
 			dialogVbox.getChildren().add(
 
-				new Text("Help\nYou can add new cars with the 'Car'"
+				new Text(" Help\n You can add new cars with the 'Car'"
             	+ " button, and add\n new houses with the 'House' button. The oldest house\n"
             	+ " or car will be deleted when you select 'Delete House'\n or 'Delete Car'"
             	+ " respectively. Click and drag the screen\n to rotate the camera. Camera"
-            	+ " will move opposite\n the direction of your mouse (ie up mouse = further\n"
-            	+ " away, down mouse = closer, right mouse = left, etc.)"
+            	+ " will move opposite the\n direction of your mouse (ie up mouse = down scene,\n"
+            	+ " down mouse = up scene, right mouse = left scene, etc.)\n Rotation is altered by"
+            	+ " clicking the right button and\n dragging left or right, Z translation is"
+            	+ " right mouse\n button plus up or down drag."
             	
 			));
 
