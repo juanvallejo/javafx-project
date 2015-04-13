@@ -27,6 +27,9 @@ public class CarAndHouse extends Application
 	{
 		car3D car1 = new car3D();
 		Group group1 = car1.getCar();
+		
+		house3D house1 = new house3D();
+		Group group2 = house1.getHouse();
 
 		Camera camera = new PerspectiveCamera();
 		Group cameraGroup = new Group();
@@ -42,14 +45,21 @@ public class CarAndHouse extends Application
 		cameraGroup.rotationAxisProperty().set(new Point3D(0, 1, 0));
 
 		// Scene
+		/*
 		Scene scene = new Scene(group1, SCREENWIDTH, SCREENHEIGHT);
 		scene.setCamera(camera);
 		primaryStage.setTitle("Car");
 		primaryStage.setScene(scene);
 		primaryStage.show();
+		*/
+		Scene scene1 = new Scene(group2, SCREENWIDTH, SCREENHEIGHT);
+		scene1.setCamera(camera);
+		primaryStage.setTitle("House");
+		primaryStage.setScene(scene1);
+		primaryStage.show();
 		
-		group1.setMouseTransparent(true);
-		scene.setOnMouseDragged(me -> {
+		group2.setMouseTransparent(true);
+		scene1.setOnMouseDragged(me -> {
 			cameraGroup.translateZProperty().set(-1000 - (me.getY()*10) );
 			cameraGroup.rotateProperty().set((SCREENWIDTH/8 - (me.getX())/20));
 		});
