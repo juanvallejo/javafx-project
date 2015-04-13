@@ -13,6 +13,7 @@ import javafx.scene.PerspectiveCamera;
 import javafx.scene.Scene;
 import javafx.scene.SubScene;
 import javafx.scene.control.Button;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
@@ -58,7 +59,7 @@ public class GUIScreen extends Application {
 		// Buttons do not expand past their natural size
 		FlowPane pane = new FlowPane(Orientation.VERTICAL);
 		FlowPane sub  = new FlowPane(Orientation.VERTICAL);
-		pane.setColumnHalignment(HPos.LEFT);
+		//pane.setColumnHalignment(HPos.LEFT);
 		pane.setMinSize(SCREENWIDTH, SCREENHEIGHT);
 		Camera camera = new PerspectiveCamera();
 		Group cameraGroup = new Group();
@@ -147,6 +148,11 @@ public class GUIScreen extends Application {
 		});
 		Group root = new Group(pane);
 		Scene scene = new Scene(root, SCREENWIDTH, SCREENHEIGHT);
+
+		//Scene scene2 = new Scene(sub, 200,300);
+		//root.setMouseTransparent(true);
+		//scene.setCamera(camera);
+
 		SubScene scene2 = new SubScene(sub, SCREENWIDTH,SCREENHEIGHT);
 		sub.setMouseTransparent(true);
 
