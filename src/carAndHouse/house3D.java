@@ -18,6 +18,8 @@ public class house3D extends Shape3D implements ScreenObject
 	
 	Group house;
 	Box body = new Box(200,200,200);
+	Box window1 = new Box(40,40,5);
+	Box window2 = new Box(40,40,5);
 	
 	TriangleMesh roofMesh = new TriangleMesh();
 	MeshView roof;
@@ -47,6 +49,12 @@ public class house3D extends Shape3D implements ScreenObject
 		roof.setDrawMode(DrawMode.FILL);
 		roof.setMaterial(roofMaterial);
 		
+		window1.setTranslateZ(100);
+		window1.setMaterial(roofMaterial);
+		
+		window2.setTranslateZ(-100);
+		window2.setMaterial(roofMaterial);
+		
 		Random rand = new Random();
 		int colorSelect = rand.nextInt(5);
 		switch(colorSelect)
@@ -65,7 +73,7 @@ public class house3D extends Shape3D implements ScreenObject
 		 //set color of body
 		 body.setMaterial(bodyMaterial);
 		 
-		 house=new Group(body,roof);
+		 house=new Group(body,roof,window1,window2);
 	}
 	
 	public Group getShape()
