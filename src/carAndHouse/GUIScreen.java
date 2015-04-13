@@ -11,14 +11,12 @@ import javafx.scene.Camera;
 import javafx.scene.Group;
 import javafx.scene.PerspectiveCamera;
 import javafx.scene.Scene;
+import javafx.scene.SubScene;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.layout.Border;
-import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.BorderStroke;
-import javafx.scene.layout.BorderStrokeStyle;
 import javafx.scene.layout.FlowPane;
-import javafx.scene.paint.Color;
+import javafx.scene.layout.VBox;
+import javafx.scene.text.Text;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 public class GUIScreen extends Application {
@@ -58,6 +56,7 @@ public class GUIScreen extends Application {
 
 		// Buttons do not expand past their natural size
 		FlowPane pane = new FlowPane(Orientation.VERTICAL);
+		FlowPane sub  = new FlowPane(Orientation.VERTICAL);
 		pane.setColumnHalignment(HPos.LEFT);
 		pane.setMinSize(SCREENWIDTH, SCREENHEIGHT);
 		Camera camera = new PerspectiveCamera();
@@ -68,7 +67,7 @@ public class GUIScreen extends Application {
 		cameraGroup.setTranslateY(-SCREENHEIGHT);
 		cameraGroup.setTranslateZ(-1000);
 		// For rotating, later
-		cameraGroup.rotationAxisProperty().set(new Point3D(0, 0, 0));
+		cameraGroup.rotationAxisProperty().set(new Point3D(0, 1, 0));
 
 		Button carButton=new Button("Car");
 		Button houseButton=new Button ("House");
@@ -77,7 +76,7 @@ public class GUIScreen extends Application {
 		Button helpButton=new Button("Help");
 		//pane.setLeft(carButton);
 		//pane.setRight(houseButton);//works for borderPane
-
+		
 		pane.getChildren().addAll(carButton, houseButton, deleteCarButton, deleteHouseButton,
 				helpButton);
 
@@ -97,7 +96,7 @@ public class GUIScreen extends Application {
 
 		});
 
-		// add new houses to the thingy
+		// add new houses to the pane
 		houseButton.setOnAction(event -> {
 
 			//masterIndex++;
@@ -111,7 +110,6 @@ public class GUIScreen extends Application {
 
 		});
 
-		//currently delete either type of object indiscriminately. need to fix.
 		deleteCarButton.setOnAction(event ->{
 			if(cars.size() > 0) {
 				pane.getChildren().remove(masterIndex+getCar());
@@ -129,10 +127,27 @@ public class GUIScreen extends Application {
 				//masterIndex--;
 			}
 		});
+		helpButton.setOnAction(event -> {
+
+			final Stage dialog = new Stage();
+            dialog.initModality(Modality.APPLICATION_MODAL);
+            dialog.initOwner(primaryStage);
+            VBox dialogVbox = new VBox(20);
+            dialogVbox.getChildren().add(new Text("Help\nYou can add new cars with the 'Car'"
+            		+ " button, and add\n new houses with the 'House' button. The oldest house\n"
+            		+ " or car will be deleted when you select 'Delete House'\n or 'Delete Car'"
+            		+ " respectively. Click and drag the screen\n to rotate the camera. Camera"
+            		+ " will move opposite\n the direction of your mouse (ie up mouse = down \n"
+            		+ " camera.)"));
+            Scene dialogScene = new Scene(dialogVbox, 300, 200);
+            dialog.setScene(dialogScene);
+            dialog.show();
+
+		});
 		Group root = new Group(pane);
 		Scene scene = new Scene(root, SCREENWIDTH, SCREENHEIGHT);
-		Scene scene2 = new Scene(cameraGroup, SCREENWIDTH,SCREENHEIGHT);
-		cameraGroup.setMouseTransparent(true);
+		SubScene scene2 = new SubScene(sub, SCREENWIDTH,SCREENHEIGHT);
+		sub.setMouseTransparent(true);
 		scene2.setCamera(camera);
 		scene2.setOnMouseDragged(me -> {
 			cameraGroup.translateZProperty().set(-1000 - (me.getY()*10) );
