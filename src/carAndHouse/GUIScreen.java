@@ -108,7 +108,7 @@ public class GUIScreen extends Application {
 			//cameraGroup.rotateProperty().set((SCREENWIDTH/8 - ((me.getX()-mouseInitialX)/20)));
 
 			if(me.getButton() == MouseButton.SECONDARY) {
-System.out.println("Right-mouse");
+
 				cameraGroup.translateZProperty().set(-1000 - ((me.getY() - mouseInitialY) * 10));
 				cameraGroup.rotateProperty().set((SCREENWIDTH / 8 - ((me.getX() - mouseInitialX) / 20)));
 
