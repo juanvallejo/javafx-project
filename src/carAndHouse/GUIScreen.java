@@ -102,8 +102,8 @@ public class GUIScreen extends Application {
 
 			dragHappened = true;
 			
-			cameraGroup.translateZProperty().set(-1000 - ((me.getY()-mouseInitialY)*10) );
-			cameraGroup.rotateProperty().set((SCREENWIDTH/8 - ((me.getX()-mouseInitialX)/20)));
+			cameraGroup.translateYProperty().set(((me.getY()-mouseInitialY)*10) );
+			cameraGroup.translateXProperty().set(((me.getX()-mouseInitialX)*10));
 
 			//cameraGroup.translateZProperty().set((cameraGroup.getTranslateZ() - ((me.getY() - mouseInitialY) * 0.25)));
 			//cameraGroup.rotateProperty().set(cameraGroup.rotateProperty().get() + ((me.getX() - mouseInitialX) * 20));
