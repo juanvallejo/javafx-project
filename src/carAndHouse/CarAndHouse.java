@@ -26,14 +26,14 @@ public class CarAndHouse extends Application
 	public void start(Stage primaryStage) throws Exception 
 	{
 		car3D car1 = new car3D();
-<<<<<<< HEAD
-		Group group1 = car1.getCar();
+//<<<<<<< HEAD
+		Group group1 = car1.getShape();
 		
 		house3D house1 = new house3D();
-		Group group2 = house1.getHouse();
-=======
-		Group group1 = car1.getShape();
->>>>>>> df08d7896b973c8034839d6260e64a5d57fad132
+		Group group2 = house1.getShape();
+//=======
+		//Group group1 = car1.getShape();
+//>>>>>>> df08d7896b973c8034839d6260e64a5d57fad132
 
 		Camera camera = new PerspectiveCamera();
 		Group cameraGroup = new Group();

@@ -25,7 +25,7 @@ public class GUIScreen extends Application {
 	public int masterIndex = 0;
 
 	List<car3D> cars;
-	List<House> houses;
+	List<house3D> houses;
 	List<ScreenObject> index;
 
 	public int getCar(){
@@ -51,7 +51,7 @@ public class GUIScreen extends Application {
 
 		// initialize list of cars and houses
 		cars 	= new ArrayList<car3D>();
-		houses 	= new ArrayList<House>();
+		houses 	= new ArrayList<house3D>();
 		index 	= new ArrayList<ScreenObject>();
 
 		// Buttons do not expand past their natural size
@@ -101,7 +101,7 @@ public class GUIScreen extends Application {
 
 			//masterIndex++;
 
-			House house = new House();
+			house3D house = new house3D();
 			//house.setIndex(masterIndex);
 			houses.add(house);
 			index.add(house);
