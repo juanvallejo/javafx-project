@@ -1,4 +1,4 @@
-package carAndHouse;
+package ThreeDimension;
 
 
 import java.util.Random;
@@ -11,13 +11,13 @@ import javafx.scene.paint.PhongMaterial;
 import javafx.scene.shape.*;
 
 
-public class house3D extends Shape3D implements ScreenObject
+public class house3D extends Shape3D
 {
 	PhongMaterial roofMaterial = new PhongMaterial();
 	PhongMaterial bodyMaterial = new PhongMaterial();
 	
 	Group house;
-	Box body = new Box(400,400,400);
+	Box body = new Box(200,200,200);
 	
 	TriangleMesh roofMesh = new TriangleMesh();
 	MeshView roof;
@@ -27,10 +27,10 @@ public class house3D extends Shape3D implements ScreenObject
 		//create the roof
 		roofMesh.getPoints().addAll(
 				0,0,0,
-				0,200,-400,
-				-400,200,0,
-				400,200,0,
-				0,200,400
+				0,100,-200,
+				-200,100,0,
+				200,100,0,
+				0,100,200
 				);
 		
 		roofMesh.getFaces().addAll(
@@ -43,7 +43,7 @@ public class house3D extends Shape3D implements ScreenObject
 		    ); 
 		roofMesh.getTexCoords().addAll(0, 0);
 		roof = new MeshView(roofMesh);
-		roof.setTranslateY(-400);
+		roof.setTranslateY(-200);
 		roof.setDrawMode(DrawMode.FILL);
 		roof.setMaterial(roofMaterial);
 		
@@ -68,12 +68,9 @@ public class house3D extends Shape3D implements ScreenObject
 		 house=new Group(body,roof);
 	}
 	
-	public Group getShape()
+	public Group getHouse()
 	{
 		return house;
-	}
-	public String getType(){
-		return "House";
 	}
 
 	@Override
