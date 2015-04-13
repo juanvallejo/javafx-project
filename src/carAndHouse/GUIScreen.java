@@ -108,12 +108,17 @@ public class GUIScreen extends Application {
 			//cameraGroup.rotateProperty().set((SCREENWIDTH/8 - ((me.getX()-mouseInitialX)/20)));
 
 			if(me.getButton() == MouseButton.SECONDARY) {
-				cameraGroup.translateZProperty().set(-1000 - ((me.getY()-mouseInitialY)*10) );
+System.out.println("Right-mouse");
+				cameraGroup.translateZProperty().set(-1000 - ((me.getY() - mouseInitialY) * 10));
+				cameraGroup.rotateProperty().set((SCREENWIDTH / 8 - ((me.getX() - mouseInitialX) / 20)));
+
 				cameraGroup.rotationAxisProperty().set(new Point3D(0, 0, 0));
-				cameraGroup.rotateProperty().set((SCREENWIDTH/8 - ((me.getX()-mouseInitialX)/20)));
+
+				return;
 			}
-			cameraGroup.translateYProperty().set(((me.getY()-mouseInitialY)*10) );
-			cameraGroup.translateXProperty().set(((me.getX()-mouseInitialX)*10));
+
+			cameraGroup.translateYProperty().set(((me.getY() - mouseInitialY) * 10));
+			cameraGroup.translateXProperty().set(((me.getX() - mouseInitialX) * 10));
 			//cameraGroup.translateZProperty().set((cameraGroup.getTranslateZ() - ((me.getY() - mouseInitialY) * 0.25)));
 			//cameraGroup.rotateProperty().set(cameraGroup.rotateProperty().get() + ((me.getX() - mouseInitialX) * 20));
 
