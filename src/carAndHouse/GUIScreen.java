@@ -152,6 +152,7 @@ public class GUIScreen extends Application {
 
 		scene2.setCamera(camera);
 		scene2.setOnMouseDragged(me -> {
+			System.out.println("Camera dragged");
 			cameraGroup.translateZProperty().set(-1000 - (me.getY()*10) );
 			cameraGroup.rotateProperty().set((SCREENWIDTH/8 - (me.getX())/20));
 		});
