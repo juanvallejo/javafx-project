@@ -139,8 +139,8 @@ public class GUIScreen extends Application {
             		+ " button, and add\n new houses with the 'House' button. The oldest house\n"
             		+ " or car will be deleted when you select 'Delete House'\n or 'Delete Car'"
             		+ " respectively. Click and drag the screen\n to rotate the camera. Camera"
-            		+ " will move opposite\n the direction of your mouse (ie up mouse = down \n"
-            		+ " camera.)"));
+            		+ " will move opposite\n the direction of your mouse (ie up mouse = further\n"
+            		+ " away, down mouse = closer, right mouse = left, etc.)"));
             Scene dialogScene = new Scene(dialogVbox, 300, 200);
             dialog.setScene(dialogScene);
             dialog.show();
