@@ -9,6 +9,11 @@ import javafx.scene.paint.Color;
 import javafx.scene.paint.PhongMaterial;
 import javafx.scene.shape.*;
 
+/**
+ * @author Juan Vallejo
+ * @author Amanda Lee
+ * @author Ian Miller
+ */
 
 public class car3D extends Shape3D implements ScreenObject{
 	

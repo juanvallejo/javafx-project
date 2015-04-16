@@ -19,14 +19,16 @@ import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
+import javafx.scene.transform.Rotate;
 import javafx.scene.Node;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 /**
  * UI Builder. Adds 3D cars and houses to the screen.
- * TODO: Fix object rotation
- * @author amalee, DooroftheTrog, juanvallejo
+ * @author Juan Vallejo
+ * @author Amanda Lee
+ * @author Ian Miller
  */
 
 public class GUIScreen extends Application {
@@ -36,6 +38,9 @@ public class GUIScreen extends Application {
 
 	public double mouseInitialX;
 	public double mouseInitialY;
+
+	public double lastYTranslation;
+	public double lastXTranslation;
 
 	public boolean dragHappened;
 
@@ -59,12 +64,15 @@ public class GUIScreen extends Application {
 	public void start(Stage stage) {
 
 		// initialize variables
-		objects 		= new ArrayList<ScreenObject>();
+		objects 			= new ArrayList<ScreenObject>();
 
-		mouseInitialX 	= 0.0;
-		mouseInitialY 	= 0.0;
+		mouseInitialX 		= 0.0;
+		mouseInitialY 		= 0.0;
 
-		dragHappened 	= false;
+		lastYTranslation 	= 0.0;
+		lastXTranslation 	= 0.0;
+
+		dragHappened 		= false;
 
 		// define 3D components
 		Camera camera = new PerspectiveCamera();
@@ -72,8 +80,6 @@ public class GUIScreen extends Application {
 
 		// define camera initial rotation state.
 		cameraGroup.getChildren().add(camera);
-		
-		
 
 		StackPane mainSceneLayout = new StackPane();
 		mainSceneLayout.setPrefSize(800, 600);
@@ -99,46 +105,61 @@ public class GUIScreen extends Application {
 		// set subscene properties
 		drawScene.setCamera(camera);
 
+		buttonScene.setOnMouseMoved(me -> {
+
+			double angleY = 0.0;
+			double angleX = 0.0;
+
+			// make sure there are objects on the screen
+			if(objects.size() > 0 && me.getButton() != MouseButton.SECONDARY) {
+				
+				angleY = me.getY() / 100.0 * 2.0;
+				angleX = me.getX() / 100.0 * 2.0;
+
+				if(Math.abs(cameraGroup.translateZProperty().get()) > 0.0) {
+					angleY += cameraGroup.translateZProperty().get() / 100.0;
+					angleX += cameraGroup.translateZProperty().get() / 100.0;
+				}
+
+				// rotate along the X axis
+				cameraGroup.setRotationAxis(Rotate.X_AXIS);	
+				cameraGroup.setRotate(-angleY);
+
+				cameraGroup.translateYProperty().set(lastYTranslation - angleY);
+
+				// rotate along the Y axis
+				cameraGroup.setRotationAxis(Rotate.Y_AXIS);	
+				cameraGroup.setRotate(-angleX);
+
+				cameraGroup.translateXProperty().set(lastXTranslation - angleX);
+
+			}
+
+		});
+
 		buttonScene.setOnMouseDragged(me -> {
 
 			dragHappened = true;
 
-			//cameraGroup.rotationAxisProperty().set(new Point3D(0, 1, 0));
-			//cameraGroup.translateZProperty().set(-1000 - ((me.getY()-mouseInitialY)*10) );
-			//cameraGroup.rotateProperty().set((SCREENWIDTH/8 - ((me.getX()-mouseInitialX)/20)));
-
+			// if right-click, zoom in or out
 			if(me.getButton() == MouseButton.SECONDARY) {
-
 				cameraGroup.translateZProperty().set(-1000 - ((me.getY() - mouseInitialY) * 10));
-				cameraGroup.rotateProperty().set((SCREENWIDTH / 8 - ((me.getX() - mouseInitialX) / 20)));
-
-				cameraGroup.rotationAxisProperty().set(new Point3D(0, 0, 0));
-
 				return;
 			}
 
-			cameraGroup.translateYProperty().set(((me.getY() - mouseInitialY) * 10));
-			cameraGroup.translateXProperty().set(((me.getX() - mouseInitialX) * 10));
-			//cameraGroup.translateZProperty().set((cameraGroup.getTranslateZ() - ((me.getY() - mouseInitialY) * 0.25)));
-			//cameraGroup.rotateProperty().set(cameraGroup.rotateProperty().get() + ((me.getX() - mouseInitialX) * 20));
+			lastXTranslation = ((me.getX() - mouseInitialX) * 10);
+			lastYTranslation = ((me.getY() - mouseInitialY) * 10);
+
+			cameraGroup.translateYProperty().set(lastYTranslation);
+			cameraGroup.translateXProperty().set(lastXTranslation);
 
 		});
-		
-		//buttonScene.setOnMouseMoved(me -> {
-			
-					//dragHappened = true;
-
-					//cameraGroup.translateZProperty().set((cameraGroup.getTranslateZ() - ((me.getY() - mouseInitialY) * 0.25)));
-					//cameraGroup.rotateProperty().set(cameraGroup.rotateProperty().get() + ((me.getX() - mouseInitialX) * 20));
-
-				//});
 
 		buttonScene.setOnMousePressed(me -> {
 			mouseInitialX = me.getX();
 			mouseInitialY = me.getY();
 		});
 
-		// add mouse events
 		buttonScene.setOnMouseReleased(me -> {
 
 			if(dragHappened) {
@@ -204,11 +225,11 @@ public class GUIScreen extends Application {
 				new Text(" Help\n You can add new cars with the 'Car'"
             	+ " button, and add\n new houses with the 'House' button. The oldest house\n"
             	+ " or car will be deleted when you select 'Delete House'\n or 'Delete Car'"
-            	+ " respectively. Click and drag the screen\n to rotate the camera. Camera"
+            	+ " respectively. Click and drag the screen\n to translate and rotate the camera. Camera"
             	+ " will move opposite the\n direction of your mouse (ie up mouse = down scene,\n"
-            	+ " down mouse = up scene, right mouse = left scene, etc.)\n Rotation is altered by"
-            	+ " clicking the right button and\n dragging left or right, Z translation is"
-            	+ " right mouse\n button plus up or down drag."
+            	+ " down mouse = up scene, right mouse = left scene, etc.)\n Zoom is triggered by"
+            	+ " clicking the right button and\n dragging up or down, rotation is achieved simply"
+            	+ " by\n moving the mouse."
             	
 			));
 

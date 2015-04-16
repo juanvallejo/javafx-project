@@ -1,6 +1,5 @@
 package  carAndHouse;
 
-
 import java.util.Random;
 
 import com.sun.javafx.sg.prism.NGNode;
@@ -10,9 +9,16 @@ import javafx.scene.paint.Color;
 import javafx.scene.paint.PhongMaterial;
 import javafx.scene.shape.*;
 
+/**
+ * @author Juan Vallejo
+ * @author Amanda Lee
+ * @author Ian Miller
+ */
 
-public class house3D extends Shape3D implements ScreenObject
-{
+public class house3D extends Shape3D implements ScreenObject {
+
+	final public static int DEFAULT_SHAPE_SIZE = 200;
+
 	PhongMaterial roofMaterial = new PhongMaterial();
 	PhongMaterial bodyMaterial = new PhongMaterial();
 	
